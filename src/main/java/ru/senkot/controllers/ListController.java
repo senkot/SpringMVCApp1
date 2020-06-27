@@ -15,7 +15,7 @@ public class ListController {
     List<User> users = null;
 
     @GetMapping("/list")
-    public ModelAndView modelAndView() {
+    public ModelAndView listGet() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("list");
         try {
