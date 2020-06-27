@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
-<%--<%@ page import="app.entities.User" %>
+<%@ page import="ru.senkot.entities.User" %>
+<%--
   Created by IntelliJ IDEA.
   User: KOTLIS
   Date: 01.06.2020
