@@ -1,29 +1,25 @@
 package ru.senkot.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 import ru.senkot.entities.User;
-import ru.senkot.model.UserDAO;
-
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
+@Scope("prototype")
 public class ListController {
 
-    List<User> users = null;
+    @Autowired
+    List<User> selectAllUser;
 
     @GetMapping("/list")
     public ModelAndView listGet() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("list");
-        try {
-            users = UserDAO.getInstance().selectAllUser();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        mav.addObject("users", users);
+        mav.addObject("users", selectAllUser);
 
         return mav;
     }

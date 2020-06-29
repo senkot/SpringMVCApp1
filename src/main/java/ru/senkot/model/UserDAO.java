@@ -1,11 +1,15 @@
 package ru.senkot.model;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 import ru.senkot.entities.User;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
+@Scope("prototype")
 public class UserDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo?useUnicode=true&serverTimezone=UTC";
     private String name = "root";
