@@ -9,7 +9,7 @@ import ru.senkot.entities.User;
 import java.util.List;
 
 @Controller
-@Scope("prototype")
+@Scope("request")
 public class ListController {
 
     @Autowired
