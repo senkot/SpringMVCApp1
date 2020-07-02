@@ -1,6 +1,5 @@
 package ru.senkot.model;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.senkot.entities.User;
 
@@ -13,16 +12,6 @@ public class UserDAO {
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo?useUnicode=true&serverTimezone=UTC";
     private String name = "root";
     private String password = "123456";
-
-    private static UserDAO instance;
-
-    private UserDAO() {
-    }
-
-    public static synchronized UserDAO getInstance() {
-        if (instance == null) instance = new UserDAO();
-        return instance;
-    }
 
     private static final String INSERT_USER_SQL = "INSERT INTO users" + " (name, email, country) VALUES" + " (?, ?, ?);";
     private static final String SELECT_USER_BY_ID = "SELECT id,name,email,country FROM users WHERE id = ?";

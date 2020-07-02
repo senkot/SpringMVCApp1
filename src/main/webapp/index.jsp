@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
 <div>
@@ -6,8 +7,8 @@
 
 <div>
     <div>
-        <button onclick="location.href='/list'">Users list</button>
-        <button onclick="location.href='/add'">Add user</button>
+        <button onclick="location.href='<c:url value="/list"/>'">Users list</button>
+        <button onclick="location.href='<c:url value="/add"/>'">Add user</button>
     </div>
 </div>
 </body>

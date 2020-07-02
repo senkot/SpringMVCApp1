@@ -37,7 +37,7 @@
 </div>
 
 <div>
-    <button onclick="location.href='/'">Back to main</button>
+    <button onclick="location.href='<c:url value="/"/>'">Back to main</button>
 </div>
 </body>
 </html>
