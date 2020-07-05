@@ -1,6 +1,8 @@
 package ru.senkot.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,12 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 import ru.senkot.entities.User;
 import ru.senkot.service.UserService;
 
+import javax.validation.Valid;
 import java.sql.SQLException;
 
 @Controller
 public class MainController {
 
-    UserService userService = new UserService();
+    private UserService userService = new UserService();
 
     @GetMapping("/list")
     public ModelAndView listGet() throws SQLException {
@@ -61,12 +64,15 @@ public class MainController {
     }
 
     @PostMapping("/add")
-    public ModelAndView postAdd(@ModelAttribute("user") User user) {
-        ModelAndView mav = new ModelAndView();
-        mav.setViewName("redirect:/list");
-        userService.insertUser(user);
+    public String postAdd(@Valid User user, BindingResult result, Model model) {
 
-        return mav;
+        if (result.hasErrors()) {
+            return "add";
+        }
+
+        userService.insertUser(user);
+        model.addAttribute("message", "Country " + user.getCountry() + " is OK");
+        return "redirect:/list";
     }
 
 }

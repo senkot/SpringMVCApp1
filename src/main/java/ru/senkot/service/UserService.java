@@ -2,7 +2,7 @@ package ru.senkot.service;
 
 import org.springframework.stereotype.Service;
 import ru.senkot.entities.User;
-import ru.senkot.model.UserDAO;
+import ru.senkot.DAO.UserDAO;
 
 import java.sql.SQLException;
 import java.util.List;

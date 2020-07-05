@@ -9,7 +9,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <link rel="stylesheet" href="styles/w3.css">
     <title>Add new User</title>
 </head>
 <body>
@@ -18,6 +17,7 @@
     </div>
     <div>
         <div>
+            <c:if test="${not empty message}"><div class="message green">${message}</div></c:if>
             <form method="post">
                 <div>
                     <h2>Add user:</h2>

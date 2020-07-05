@@ -1,9 +1,14 @@
 package ru.senkot.entities;
 
+import ru.senkot.validation.ValidCountry;
+
 public class User {
+
     protected int id;
     protected String name;
     protected String email;
+
+    @ValidCountry
     protected String country;
 
     public User() {
