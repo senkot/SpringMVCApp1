@@ -19,7 +19,7 @@ public class MainController {
     private UserService userService = new UserService();
 
     @GetMapping("/list")
-    public ModelAndView listGet() throws SQLException {
+    public ModelAndView listGet() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("list");
         mav.addObject("users", userService.selectAllUser());

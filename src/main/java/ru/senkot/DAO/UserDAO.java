@@ -1,5 +1,8 @@
 package ru.senkot.DAO;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.senkot.entities.User;
 
@@ -9,6 +12,14 @@ import java.util.List;
 
 @Repository
 public class UserDAO {
+
+    private SessionFactory sessionFactory;
+
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     private String jdbcURL = "jdbc:mysql://localhost:3306/demo?useUnicode=true&serverTimezone=UTC";
     private String name = "root";
     private String password = "123456";
@@ -79,20 +90,26 @@ public class UserDAO {
         return user;
     }
 
-    public List<User> selectAllUser() throws SQLException {
+    @SuppressWarnings("unchecked")
+    public List<User> selectAllUser() {
         List<User> users = new ArrayList<>();
-        try (Connection connection = getConnection();
-                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
-            ResultSet rs = preparedStatement.executeQuery();
 
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String name = rs.getString("name");
-                String email = rs.getString("email");
-                String country = rs.getString("country");
-                users.add(new User(id, name, email, country));
-            }
-        }
+//        try (Connection connection = getConnection();
+//                PreparedStatement preparedStatement = connection.prepareStatement(SELECT_ALL_USERS)) {
+//            ResultSet rs = preparedStatement.executeQuery();
+//
+//            while (rs.next()) {
+//                int id = rs.getInt("id");
+//                String name = rs.getString("name");
+//                String email = rs.getString("email");
+//                String country = rs.getString("country");
+//                users.add(new User(id, name, email, country));
+//            }
+//        }
+//        return users;
+
+        Session session = sessionFactory.getCurrentSession();
+        users = session.createQuery("from User").list();
         return users;
     }
 

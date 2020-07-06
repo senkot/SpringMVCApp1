@@ -6,7 +6,7 @@ public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispat
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class[]{HibernateConfig.class};
     }
 
     @Override
@@ -18,4 +18,6 @@ public class ServletDispatcherInitializer extends AbstractAnnotationConfigDispat
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+
+
 }

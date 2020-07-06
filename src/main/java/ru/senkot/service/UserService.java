@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import ru.senkot.entities.User;
 import ru.senkot.DAO.UserDAO;
 
+import javax.transaction.Transactional;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class UserService {
         return userDAO.selectUser(id);
     }
 
-    public List<User> selectAllUser() throws SQLException {
+    @Transactional
+    public List<User> selectAllUser() {
         return userDAO.selectAllUser();
     }
 

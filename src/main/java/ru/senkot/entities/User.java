@@ -2,13 +2,25 @@ package ru.senkot.entities;
 
 import ru.senkot.validation.ValidCountry;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected int id;
+
+    @Column(name = "name")
     protected String name;
+
+    @Column(name = "email")
     protected String email;
 
     @ValidCountry
+    @Column(name = "country")
     protected String country;
 
     public User() {
