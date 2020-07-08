@@ -12,7 +12,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserDAO userDAO = new UserDAO();
+    private UserDAO userDAO;
 
     @Transactional
     public void insertUser(User user) {

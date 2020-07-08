@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class MainController {
 
     @Autowired
-    private UserService userService = new UserService();
+    private UserService userService;
 
     @GetMapping("/list")
     public ModelAndView listGet() {
