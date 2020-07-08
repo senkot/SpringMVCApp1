@@ -1,5 +1,6 @@
 package ru.senkot.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +17,7 @@ import java.sql.SQLException;
 @Controller
 public class MainController {
 
+    @Autowired
     private UserService userService = new UserService();
 
     @GetMapping("/list")
@@ -47,10 +49,10 @@ public class MainController {
     }
 
     @GetMapping("/delete")
-    public ModelAndView deleteUser(@ModelAttribute("id") int id) throws SQLException {
+    public ModelAndView deleteUser(@ModelAttribute("user") User user) throws SQLException {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/list");
-        userService.deleteUser(id);
+        userService.deleteUser(user);
 
         return mav;
     }
