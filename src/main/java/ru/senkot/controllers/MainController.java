@@ -12,7 +12,6 @@ import ru.senkot.entities.User;
 import ru.senkot.service.UserService;
 
 import javax.validation.Valid;
-import java.sql.SQLException;
 
 @Controller
 public class MainController {
@@ -30,7 +29,7 @@ public class MainController {
     }
 
     @GetMapping("/edit")
-    public ModelAndView getEditUser(@ModelAttribute("id") int id) throws SQLException {
+    public ModelAndView getEditUser(@ModelAttribute("id") int id) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("edit");
         User user = userService.selectUser(id);
@@ -40,7 +39,7 @@ public class MainController {
     }
 
     @PostMapping("/edit")
-    public ModelAndView postEditUser(@ModelAttribute("user") User user) throws SQLException {
+    public ModelAndView postEditUser(@ModelAttribute("user") User user) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/list");
         userService.updateUser(user);
@@ -49,7 +48,7 @@ public class MainController {
     }
 
     @GetMapping("/delete")
-    public ModelAndView deleteUser(@ModelAttribute("user") User user) throws SQLException {
+    public ModelAndView deleteUser(@ModelAttribute("user") User user) {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("redirect:/list");
         userService.deleteUser(user);
